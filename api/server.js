@@ -25,6 +25,7 @@ app.get('/', function(req, res){
     });
 })
 
+//------------------------POST-------------------------
 app.post('/api', function(req, res){
     var dados = req.body;
     res.send(dados);
@@ -37,6 +38,24 @@ app.post('/api', function(req, res){
                 }else{
                     res.json(records)
                 }
+                mongoclient.close();
+            });
+        });
+    });
+});
+
+//------------------------GET-------------------------
+app.get('/api', function(req, res){
+
+    conn.open(function(err, mongoclient){
+        mongoclient.collection('postagens', function(err, collection){
+            collection.find().toArray(function(err, results){
+                if(err){
+                    res.json(err)
+                }else{
+                    res.json(results)
+                }
+
                 mongoclient.close();
             });
         });
