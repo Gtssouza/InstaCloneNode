@@ -12,3 +12,9 @@ var port = 8888;
 app.listen(port);
 
 console.log('O servidor http esta escutando na porta:' + port);
+
+app.get('/', function(req, res){
+    res.send({
+        msg:'Ola'
+    });
+})
