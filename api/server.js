@@ -28,6 +28,9 @@ app.get('/', function(req, res){
 
 //------------------------POST-------------------------
 app.post('/api', function(req, res){
+
+    res.setHeader("Acess-Control-Allow-Origin","*")
+
     var dados = req.body;
     res.send(dados);
 
