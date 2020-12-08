@@ -38,10 +38,15 @@ app.post('/api', function(req, res){
     //res.send(dados);
     //console.log(req.files);
 
-    var path_origem = req.files.arquivo.path;
-    var path_destino = './uploads/' + req.files.arquivo.originalFilename;
+    var date = new Date();
+    time_stamp = date.getTime();
 
-    var url_imagem = req.files.arquivo.originalFilename;
+    var url_imagem = time_stamp + '_' + req.files.arquivo.originalFilename;
+
+    var path_origem = req.files.arquivo.path;
+    var path_destino = './uploads/' + url_imagem;
+
+    
 
     fs.rename(path_origem, path_destino, function(err, result){
         if(err){
