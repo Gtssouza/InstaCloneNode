@@ -33,7 +33,7 @@
 					var formData = new FormData();
 
 					var arquivo = document.getElementById("arquivo").files[0];
-					var titulo = document.getElementById("titulo").files[0];
+					var titulo = document.getElementById("titulo").value;
 
 					formData.append("arquivo", arquivo);
 					formData.append("titulo", titulo);
@@ -50,7 +50,7 @@
 					}
 
 					//fazer o envio do nosso request
-					xhr.open("POST", "http://:8882/api");
+					xhr.open("POST", "http://localhost:8083/api");
 					xhr.send(formData);
 				});
 

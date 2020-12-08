@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(multiparty());
 
-var port = 8882;
+var port = 8083;
 
 app.listen(port);
 
@@ -31,12 +31,13 @@ app.get('/', function(req, res){
 //------------------------POST-------------------------
 app.post('/api', function(req, res){
 
-    res.setHeader("Acess-Control-Allow-Origin","*")
+    res.setHeader("Access-Control-Allow-Origin","*");
 
     var dados = req.body;
     res.send(dados);
+    //console.log(req.files);
 
-    conn.open(function(err, mongoclient){
+    /*conn.open(function(err, mongoclient){
         mongoclient.collection('postagens', function(err, collection){
             collection.insert(dados, function(err, records){
                 if(err){
@@ -47,7 +48,7 @@ app.post('/api', function(req, res){
                 mongoclient.close();
             });
         });
-    });
+    });*/
 });
 
 //------------------------GET-------------------------
