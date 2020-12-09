@@ -11,6 +11,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(multiparty());
 
+app.use(function(req, res, next){
+    res.setHeader("Access-Control-Allow-Origin","*");
+    res.setHeader("Access-Control-Allow-Methods","GET, POST, PUT, DELETE");
+    res.setHeader("Access-Control-Allow-Headers","content-type");
+    res.setHeader("Access-Control-Allow-Credentials",true);
+    next();
+});
+
 var port = 8083;
 
 app.listen(port);
@@ -32,7 +40,7 @@ app.get('/', function(req, res){
 //------------------------POST-------------------------
 app.post('/api', function(req, res){
 
-    res.setHeader("Access-Control-Allow-Origin","*");
+    //res.setHeader("Access-Control-Allow-Origin","*");
 
     //var dados = req.body;
     //res.send(dados);
@@ -79,7 +87,7 @@ app.post('/api', function(req, res){
 //------------------------GET-------------------------
 app.get('/api', function(req, res){
 
-    res.setHeader("Access-Control-Allow-Origin","*");
+    //res.setHeader("Access-Control-Allow-Origin","*");
 
     conn.open(function(err, mongoclient){
         mongoclient.collection('postagens', function(err, collection){
@@ -117,7 +125,9 @@ app.get('/api/:id', function(req, res){
 //------------------------PUT BY ID-------------------------
 app.put('/api/:id', function(req, res){
 
-    conn.open(function(err, mongoclient){
+    res.send(req.body.comentario);
+
+   /* conn.open(function(err, mongoclient){
         mongoclient.collection('postagens', function(err, collection){
             collection.update(
                 {_id : objectId(req.params.id)},
@@ -133,7 +143,7 @@ app.put('/api/:id', function(req, res){
                 }
             );     
             });
-        });
+        });*/
     });
 
 //------------------------DELETE BY ID-------------------------

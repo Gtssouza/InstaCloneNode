@@ -49,8 +49,14 @@
 								var comentario = $('#'+id_input_comentario).val();
 
 								var xhr = new XMLHttpRequest();
-								xhr.open('PUT', 'http://localhost:8083/api'+id);
-								xhr.send();
+								xhr.open('PUT', 'http://localhost:8083/api/'+id);
+								xhr.setRequestHeader('Content-Type','application/json');
+
+								xhr.onload = function(){
+									alert(xhr.responseText);
+								}
+
+								xhr.send(JSON.stringify({comentario: comentario }));
 							})
 
 						}
