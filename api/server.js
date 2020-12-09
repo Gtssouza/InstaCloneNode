@@ -125,13 +125,16 @@ app.get('/api/:id', function(req, res){
 //------------------------PUT BY ID-------------------------
 app.put('/api/:id', function(req, res){
 
-    res.send(req.body.comentario);
-
-   /* conn.open(function(err, mongoclient){
+   conn.open(function(err, mongoclient){
         mongoclient.collection('postagens', function(err, collection){
             collection.update(
                 {_id : objectId(req.params.id)},
-                { $set : {titulo: req.body.titulo}},
+                { $push : {
+                    comentarios:{
+                        id_comentario:new objectId(),
+                        comentario:req.body.comentario
+                    }
+                }},
                 {},
                 function(err, records){
                     if(err){
@@ -143,7 +146,7 @@ app.put('/api/:id', function(req, res){
                 }
             );     
             });
-        });*/
+        });
     });
 
 //------------------------DELETE BY ID-------------------------

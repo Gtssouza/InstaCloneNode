@@ -53,7 +53,9 @@
 								xhr.setRequestHeader('Content-Type','application/json');
 
 								xhr.onload = function(){
-									alert(xhr.responseText);
+									if(xhr.status === 200){
+										window.location.href = '/home';
+									}
 								}
 
 								xhr.send(JSON.stringify({comentario: comentario }));
